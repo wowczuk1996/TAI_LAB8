@@ -7,7 +7,7 @@ import {QuizComponent} from "./components/quiz/quiz.component";
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: HomeComponent
   },
   {
