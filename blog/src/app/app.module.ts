@@ -39,16 +39,15 @@ import { TextFormatDirective } from './directives/text-format.directive';
     BlogHomeComponent,
     FilterPipe,
     TextFormatDirective
-
   ],
+
   imports: [
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
-
   ],
+
   providers: [
     DataService
   ],
