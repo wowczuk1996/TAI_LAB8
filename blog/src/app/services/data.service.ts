@@ -6,13 +6,22 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
+  private url = 'https://blogtai.herokuapp.com';
 
-  private url = 'https://jsonplaceholder.typicode.com/photos';
+    constructor(private http: HttpClient) {
+}
 
-  constructor(private http: HttpClient) {
-  }
+getAll() {
+  return this.http.get(this.url + '/api/posts/');
+}
 
-  getAll() {
-    return this.http.get(this.url);
-  }
+getById(id) {
+  return this.http.get(this.url + '/api/posts/'+ id);
+}
+
+getByText(data) {
+  return this.http.post(this.url + '/api/posts/', data);
+}
+
+
 }
