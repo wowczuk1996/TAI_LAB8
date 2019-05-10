@@ -1,12 +1,19 @@
-package com.example.demo;
+package com.example.demo.post;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
+    @Autowired
+    private PostRepository postRepository;
+
+
     private static ArrayList<Post> posts  = new ArrayList<>();
     private static int idCounter = 0;
     static {
@@ -27,6 +34,15 @@ public class PostServiceImpl implements PostService {
     @Override
     public List<Post> getAll() {
         return posts;
+    }
+
+    @Override
+    public URI saveToDatabase(Post post) {
+        Post postUpdated = postRepository.save(post);
+
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id").buildAndExpand(postUpdated.getId()).toUri();
+        return uri;
     }
 
     @Override
